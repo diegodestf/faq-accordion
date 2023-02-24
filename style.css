@@ -1,0 +1,268 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap');
+
+:root {
+  --desaturated-blue: hsl(238, 29%, 16%);
+  --soft-red: hsl(14, 88%, 65%);
+
+  --bg-soft-violet: hsl(273, 75%, 66%);
+  --bg-soft-blue: hsl(240, 73%, 65%);
+
+  --dark-grayish-blue: hsl(240, 6%, 50%);
+  --darker-grayish-blue: hsl(237, 12%, 33%);
+
+  --light-grayish-blue: hsl(240, 5%, 91%);
+
+  --ff-kumbh: 'Kumbh Sans', sans-serif;
+
+  --fw-normal: 400;
+  --fw-bold: 700;
+}
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+    2. Remove default margin
+  */
+* {
+  margin: 0;
+}
+/*
+    3. Allow percentage-based heights in the application
+  */
+
+html {
+  min-height: 100%;
+}
+
+body {
+  height: 100%;
+}
+/*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+    6. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+    7. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+    8. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+    9. Create a root stacking context
+  */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+body {
+  font-size: 12px;
+  font-family: var(--ff-kumbh);
+  font-weight: var(--fw-normal);
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  background: linear-gradient(var(--bg-soft-violet), var(--bg-soft-blue));
+}
+
+.card {
+  position: relative;
+  max-width: 350px;
+  max-height: 700px;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  text-align: center;
+  background-color: white;
+  margin: 8rem 1.2rem;
+  border-radius: 1.2rem;
+  padding-bottom: 2rem;
+  box-shadow: 0px 20px 20px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card__image--wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  display: none;
+}
+
+.card__image {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  width: 250px;
+  height: 290px;
+  top: -10.2rem;
+  background: url('images/bg-pattern-mobile.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center 160px;
+}
+
+.card__content {
+  padding: 8rem 1.5rem 0 1.5rem;
+}
+
+.card__title {
+  font-family: var(--fw-bold);
+  font-size: 2rem;
+  padding-bottom: 1rem;
+}
+
+.card__question {
+  border-bottom: 1px solid var(--light-grayish-blue);
+  padding: 0.8rem 0;
+  text-align: left;
+}
+
+.card__question h2 {
+  font-size: 14px;
+  font-weight: var(--fw-normal);
+  color: var(--darker-grayish-blue);
+  transition: all 0.3s ease-in;
+}
+
+.card__question:hover h2 {
+  color: var(--soft-red);
+}
+
+.card__checkbox {
+  display: none;
+}
+
+.card__checkbox:checked {
+  color: var(--desaturated-blue);
+}
+
+.card__label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.card__toggle {
+  float: right;
+}
+
+.card__toggle img {
+  height: 8px;
+  transition: transform 0.2s ease-in-out;
+}
+
+.card__checkbox:checked + .card__label h2 {
+  font-weight: var(--fw-bold);
+  color: var(--desaturated-blue);
+}
+
+.card__checkbox:checked + .card__label .card__toggle img {
+  transform: rotate(180deg);
+}
+
+.card__response {
+  max-height: 0;
+  margin-top: 0;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+  color: var(--dark-grayish-blue);
+}
+
+.card__checkbox:checked + .card__label + .card__response {
+  max-height: 100px;
+  margin-top: 0.5rem;
+}
+
+@media (min-width: 800px) {
+  .card {
+    position: relative;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    max-width: 780px;
+    padding-bottom: 0;
+    box-shadow: 0px 10px 20px 5px rgba(0, 0, 0, 0.2);
+  }
+
+  .card__image--wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  .card__image {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background-image: none;
+    background-image: url('images/bg-pattern-desktop.svg');
+    background-repeat: no-repeat;
+    background-size: 165%;
+    background-position-x: -320px;
+    background-position-y: -110px;
+    margin: 0;
+    overflow: hidden;
+  }
+
+  .card__image img {
+    position: relative;
+    width: 400px;
+    height: 300px;
+    top: 6rem;
+    right: 4rem;
+  }
+  .card__content {
+    text-align: left;
+    padding: 4rem 4rem 4rem 0;
+  }
+
+  .box {
+    position: absolute;
+    display: block;
+    width: 120px;
+    height: 120px;
+    top: 14.5rem;
+    right: 20.6rem;
+  }
+}
